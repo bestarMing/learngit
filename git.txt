@@ -1,5 +1,5 @@
 git init  		初始化仓库（工作区）
-git add  file 	添加到暂存区
+git add  file 	添加到暂存区(.匹配多个文件)
 git co提交到分支-m打注释
 git status  	查看工作区的状态（很重要）
 git diff		查看修改内容
