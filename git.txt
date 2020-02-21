@@ -1,0 +1,64 @@
+git init  		初始化仓库（工作区）
+git add  file 	添加到暂存区
+git co提交到分支-m打注释
+git status  	查看工作区的状态（很重要）
+git diff		查看修改内容
+git log		显示最近到最远的提交日记（提交记录）（--pretty==oneline简洁，）
+git reset --hard HEAD^回退上个版本（也可以使用版本号回退）	
+git diff Head -- file	查看工作区何版本库里最新的版本的区别
+git checkout -- file   丢弃工作区的修改（让file回来最近一次的git commit或git add的状态）
+git reset HEAD file	以把暂存区的修改撤销掉，重新放回工作区
+git rm		删除工作区的文件
+git checkout -- file	恢复版本库的文件到工作区
+git checkout	其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都			可以“一键还原”。
+
+
+管理远程仓库：
+ssh-keygen -t rsa -C "@com"		创建SSH key
+git remote add origin 项目地址	添加远程库
+git remote -v			查看远程库信息
+git push -u origin master		将本地库所有内容推送到远程库（加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令）
+
+
+git clone	项目地址			克隆远程库（ssh协议比https快）
+
+分支管理：：
+git checkout -b dev 		创建并切换到dev分支
+git branch			查看当前分支（*表示当前分支）
+git checkot master			切换分支
+git merge dev			合并分支(默认快速模式)(--no ff禁止快速)(建议禁止)
+git branch -d dev			删除分支
+git brach -D dev			强制删除分支
+git switch				切换分支
+git switch				创建分支
+git switch -c			创建并切换分支
+git stash				保存工作现场（之后在工作区看不见）
+git stash list			查看工作现场
+git stash apply			恢复现场（要用git stash drop删除stash内容）
+git stash pop			恢复现场并删除stash内容
+git cherry -pick 版本号		让我们能复制一个特定的提交到当前分支
+git rebase				rebase操作可以把本地未push的分叉提交历史整理成直线；
+
+
+标签管理：
+标签相当于版本库的快照
+git tag <name>			给当前分支打上标签（当前）
+git tag				查看所有标签
+git show <tagname>		查看标签信息
+git tag <name> <版本号>		给之前的版本打上标签
+git tag -d <tagname>		删除标签名
+git push origin <tagname> 		推送某个标签到远程
+git push origin --tags		一次性推送所有标签
+删除远程标签：先删除本地标签，在从远程删除
+ git tag -d <tagname>
+git push origin :refs/tags/<tagname>
+
+github上的Fork功能可以在自己的账户下克隆别人的开源项目
+让别人接受你的修改之前必须pull request
+当使用多个远程库时，git remote add 名字不能重复
+git config --global color.ui true	让git显示颜色
+
+忽略特殊文件：在git工作区根目录下创建.gitignore，把忽略的文件夹添加进去，忽略的文件要想加入暂存区可以使用git add -f file，.gitignore文件本身要放到版本库里，并且可以对.gitignore做版本管理！
+git check-ignore -v App.class		找出来到底哪个规则写错了
+git config --global alias.st status	设置别名（将st作为status的别名）
+	
